@@ -64,13 +64,13 @@ inputvalManglerOgVaerdier <- function(datasaet,# Datasættet som skal gennemses 
 
     }
 
-  # Starter med at åbne rapporten
-  sink(file = sti, append = TRUE)
+    # Starter med at åbne rapporten
+    sink(file = sti, append = TRUE)
 
-  # Definerer stien til rapportmappen som den mappe rapportfilen ligger i
-  rapportMappeSti <- substring(sti,
-                               1,
-                               gregexpr("/", sti, fixed = TRUE)[[1]][length(gregexpr("/", sti, fixed = TRUE)[[1]])])
+    # Definerer stien til rapportmappen som den mappe rapportfilen ligger i
+    rapportMappeSti <- substring(sti,
+                                 1,
+                                 gregexpr("/", sti, fixed = TRUE)[[1]][length(gregexpr("/", sti, fixed = TRUE)[[1]])])
 
   }else{
 
@@ -279,9 +279,13 @@ inputvalManglerOgVaerdier <- function(datasaet,# Datasættet som skal gennemses 
 
     if(udskrivTekstTilRapport == TRUE){sink()}
 
-    # Stopper koden
-    stop(paste0("Fejl: Der findes mangler eller ikke tilladte værdier i variablene for", datasaetNavn, ".
+    if(any(datasaetMangler$bemaerk != "") | ikkeTilladteVaerdierFindes){
+
+      # Stopper koden
+      stop(paste0("Fejl: Der findes mangler eller ikke tilladte værdier i variablene for", datasaetNavn, ".
         For yderligere information se rapporten i rapportmappen."))
+
+    }
 
   }
 
