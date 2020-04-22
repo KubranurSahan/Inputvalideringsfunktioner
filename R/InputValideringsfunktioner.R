@@ -261,7 +261,7 @@ inputvalManglerOgVaerdier <- function(datasaet,# Datasættet som skal gennemses 
     if(udskrivTekstTilRapport == TRUE){sink(file = sti, append = TRUE)}
 
     # Tjekker om der mangler noget
-    if(sum(!is.na(datasaetMangler$bemaerk)) != 0){
+    if(any(datasaetMangler$bemaerk != "")){# sum(!is.na(datasaetMangler$bemaerk)) != 0
 
       cat("Fejl: Der er mangler i ", datasaetNavn, ", som overskrider den tilladte andel af mangler.
       For yderligere information se venligst:\n",
